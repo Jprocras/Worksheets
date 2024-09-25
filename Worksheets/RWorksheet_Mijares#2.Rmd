@@ -1,0 +1,246 @@
+---
+title: "Worksheet_2"
+author: "Jason Lloyd C. Mijares"
+date: "2024-09-22"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## No.1
+
+```{r}
+## a. 
+
+operator <- seq(-5,5)
+operator
+
+## Output(It will show the sequence from -5 to 5 in chronological order starting from -5)
+```
+
+```{r}
+## b. Write the R code and its output.
+x <- 1:7
+x
+```
+
+## No. 2
+
+```{r}
+## a.
+
+## Ouput(It will start the sequence from 1 by adding 0.2 to it until it reached 3)
+seq(1,3,by=0.2)
+```
+
+## No. 3
+
+```{r}
+workers <- c(34, 28, 22, 36, 27, 18, 52, 39, 42, 29, 35, 31, 27, 22, 37, 34, 19, 20, 57, 
+             49, 50, 37, 46, 25, 17, 37, 43, 53, 41, 51, 35, 24, 33, 41, 53, 40, 18, 44, 38, 
+             41, 41, 48, 27, 39, 19, 30, 61, 54, 58, 26, 18)
+## a.
+
+workers[3]
+```
+
+```{r}
+## b.
+
+workers[c(2,4)]
+```
+
+```{r}
+## c. 
+
+workers[-c(4,12)]
+```
+
+## No. 4
+
+```{r}
+
+x <- c("first"=3, "second"=0, "third"=9)
+names(x)
+
+## a. & b.
+
+x
+
+x[c("first", "third")]
+## it will show the numbers that coincides with the name
+```
+
+## No. 5
+
+```{r}
+
+x <- -3:2
+
+## a.& b.
+
+x[2] <- 0
+x
+
+## the sequence has its second element changed to 0 
+```
+
+## No. 6
+
+```{r}
+
+## a.
+
+diesel_data <- data.frame(
+  Month = c("Jan", "Feb", "March", "Apr", "May", "June"),
+  liter = c(52.50, 57.25, 60.00, 65.00, 74.25, 54.00),
+  purchase = c(25, 30, 40, 50, 10, 45)
+)
+
+diesel_data
+```
+
+```{r}
+## b.
+
+ave <- weighted.mean(diesel_data$liter, diesel_data$purchase)
+ave
+```
+
+## No.7
+
+```{r}
+
+## a. & b
+
+rivers
+
+data <- c(length(rivers), sum(rivers), mean(rivers), median(rivers), var(rivers), sd(rivers), min(rivers), max(rivers))
+
+data
+```
+
+## No .8
+
+```{r}
+
+## a.
+power_ranking <- c(1:25)
+celebrityName <- c("Tom Cruise", "Rolling Stones", "Oprah Winfrey", "U2", "Tiger Woods", "Steven Spielberg", "Howard Stern", "50 Cent", "Cast of the Sopranos", "Dan Brown", "Bruce Springsteen", "Donal Trump", "Muhammad Ali", "Paul McCartney", "George Lucas", "Elton John", "David Letterman", "Phil Mickelson", "J.K Rowling", "Bradd Pit", "Peter Jackson", "Dr. Phil McGraw", "Jay Lenon", "Celine Dion", "Kobe Bryant")
+pay <- c(67, 90, 225, 110, 90, 332, 302, 41, 52, 88, 55, 44, 55, 40, 233, 34, 40, 47, 75, 25, 39, 45, 32, 40, 31)
+
+df <- data.frame(Ranking = power_ranking, Celebrity = celebrityName, Pay = pay)
+df
+```
+
+```{r}
+## b.
+
+power_ranking[19] <- 15
+pay[19] <- 90
+
+df <- data.frame(Ranking = power_ranking, Celebrity = celebrityName, Pay = pay)
+
+df
+```
+
+```{r}
+## c.
+
+PowerRanking <- read.csv("/cloud/project/Worksheets/PowerRankingxlsx.csv")
+
+## d.
+
+AccessRows <- PowerRanking[10:21,]
+
+save(AccessRows, file = "Ranks.RData")
+
+## e.
+
+## It will show the modified rankings with J.K Rowling ranked as 15 and with a pay of 90 
+## but the rankings are still the values of J.K Rowling is the only change
+
+```
+
+## No. 9
+
+```{r}
+library(openxlsx)
+library(dplyr)
+
+## a. 
+
+hotelsVienna <- read.xlsx("hotels-vienna.xlsx")
+```
+
+```{r}
+## b. 
+hotelDimensions <- dim(hotelsVienna)
+hotelDimensions 
+```
+
+```{r}
+## c.
+print(colnames(hotelsVienna))
+```
+
+```{r}
+columnSelect <- select(hotelsVienna, c(1, 6,7,9,22,24))
+
+columnSelect
+```
+
+```{r}
+## d. 
+
+save(columnSelect, file = "new.RData")
+```
+
+```{r}
+## e.
+
+head(hotelsVienna,6)
+```
+
+```{r}
+tail(hotelsVienna,6)
+```
+
+## No. 10
+
+```{r}
+
+## a.
+
+vegetable_list <- list("Bitter gourd", "Squash", "Okra", "Eggplant", "Garlic", "Onion", "Malabar Spinach", "Ginger", "String Beans", "Water Spinach")
+
+vegetable_list
+```
+
+```{r}
+## b.
+
+vegetable_listnew <- append(vegetable_list,c("Sponge Gourd", "Moringa Leaves")
+)
+
+vegetable_listnew
+```
+
+```{r}
+## c.
+
+vegetable_list_after <- append(vegetable_listnew, c("Chayote", "Chinese Cabbage", "Cabbage", "Radish"), after = 5)
+
+vegetable_list_after
+length(vegetable_list_after)
+```
+
+```{r}
+## d.
+
+vegetable_list_remove <- vegetable_list_after[-c(5,10,15)]
+
+vegetable_list_remove
+```
