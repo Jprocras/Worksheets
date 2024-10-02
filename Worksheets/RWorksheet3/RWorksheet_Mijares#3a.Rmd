@@ -1,0 +1,213 @@
+---
+title: "Worksheet_3a"
+author: "Jason Lloyd C. Mijares"
+date: "2024-10-01"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## No. 1
+
+```{r}
+
+## LETTERS
+
+## a.
+
+first_11_letters <- LETTERS[1:11]
+
+first_11_letters
+```
+
+```{r}
+
+## b.
+
+oddNumbers <- LETTERS[seq(1,length(LETTERS),by =2)]
+
+oddNumbers
+```
+
+```{r}
+
+## c. 
+
+vowels <- LETTERS[c(1,5,9,15,21)]
+
+vowels
+```
+
+```{r}
+
+## d.
+
+last5Letters <- letters[22:26]
+
+last5Letters
+
+```
+
+```{r}
+
+ ## e.
+
+letters15To24 <- letters[15:24]
+
+letters15To24
+```
+
+## No. 2
+
+```{r}
+
+## a. 
+
+city <- c("Tuguegarao City", "Manila", "Iloilo City", "Tacloban", "Samal Island", "Davao City")
+
+city
+```
+
+```{r}
+## b.
+
+temp <- c(42, 39, 34, 34, 30, 27)
+
+temp
+```
+
+```{r}
+## c.
+
+cityTemp <- data.frame(City = city, Temp = temp)
+
+cityTemp
+```
+
+```{r}
+## d.
+
+names(cityTemp) <- c("City", "Temperatures")
+
+cityTemp
+```
+```{r}
+## e. 
+
+str(cityTemp)
+```
+
+```{r}
+## f.
+
+cityTemp[3:4,]
+```
+
+```{r}
+## g.
+
+highest_temp <- cityTemp[which.max(cityTemp$Temperature),]
+
+highest_temp
+```
+
+```{r}
+
+lowest_temp <- cityTemp[which.min(cityTemp$Temperature),]
+
+
+lowest_temp
+```
+## No. 3
+
+```{r}
+## a.
+
+matrix1 <- matrix(data = c(1:8,11:14),nrow = 3, ncol = 4)
+
+matrix1
+```
+
+```{r}
+## b.
+matrixTimes <- matrix1 * 2
+
+matrixTimes
+
+```
+
+```{r}
+## c.
+
+matrix1[2,]
+
+```
+```{r}
+## d.
+
+matrix1[1:2,3:4]
+```
+```{r}
+## e.
+
+matrix1[3,2:3]
+```
+
+```{r}
+## f.
+matrix1[,4]
+```
+
+```{r}
+## g.
+rownames(matrixTimes) <- c("isa", "dalawa", "tatlo")
+
+colnames(matrixTimes) <- c("uno", "dos", "tres", "quatro")
+
+matrixTimes
+```
+
+```{r}
+## h.
+
+dim(matrix1) <- c(6,2)
+
+matrix1
+
+```
+
+## No. 4
+```{r}
+
+## a.
+arrayVal <- c(1:3,6:9,0,3:5,1)
+
+val_repeat <- rep(arrayVal, times = 2)
+
+arrayData <- array(val_repeat,dim = c(2,4,3))
+
+arrayData
+```
+
+```{r}
+
+## b.
+dim(arrayData)
+
+## The array has 3 dimensions
+```
+
+```{r}
+## c.
+dimnames(arrayData) <- list(
+  c("a", "b"),
+  c("A", "B", "C", "D"),
+  c("1st-Dimensional Array", "2nd-Dimensional Array", "3rd-Dimensional Array")
+)
+
+arrayData
+
+```
+
