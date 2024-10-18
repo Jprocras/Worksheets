@@ -87,14 +87,13 @@ new_order_data
 ## No. 5
 
 ```{r}
-## a.b
+## a&b
 
 file <- "import_march.csv"
 
 
 data <- read.table(file, header = TRUE, sep = ",", stringsAsFactors = FALSE)
 
-# Print the imported data
 print(data)
 
 ```
