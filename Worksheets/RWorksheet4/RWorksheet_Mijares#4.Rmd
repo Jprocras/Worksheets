@@ -101,9 +101,8 @@ print(data)
 
 ```{r}
 
-## user_input = as.numeric(readline(prompt = "Enter a random number from 1 to 50: "))
+user_input =(readline(prompt = "Enter a random number from 1 to 50: "))
 
-user_input <- 20
 
 if(user_input == 20){
   print(TRUE)
@@ -134,10 +133,9 @@ for(bill in bills){
 return(num_bills)
 }
 
-## snackPrice <- as.numeric(readline(prompt = "Enter the price of the snack you purchased (Must be divisible by 50: "))
+SnackPrice <- as.numeric(readline(prompt = "Enter the price of the snack you purchased (Must be divisible by 50: "))
 
-snackPrice <- 1500
-min_bills_needed <- min_bills(snackPrice)
+min_bills_needed <- min_bills(SnackPrice)
 
 print(paste("The minimum number of bills needed to pay is ", min_bills_needed))
 ```
@@ -159,8 +157,7 @@ Grade_1stsem
 
 ## b.
 
-Grade_1stsem$Average <- (Grade_1stsem$Grade1 + Grade_1stsem$Grade2 +
-                          Grade_1stsem$Grade3 + Grade_1stsem$Grade4) / 4
+Grade_1stsem$Average <- (Grade_1stsem$Grade1 + Grade_1stsem$Grade2 +          Grade_1stsem$Grade3 + Grade_1stsem$Grade4) / 4
 
 for (i in 1:nrow(Grade_1stsem)) {
   student_name <- Grade_1stsem$Name[i]
