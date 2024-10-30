@@ -1,0 +1,118 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+ ---
+title: "Rworksheet_Mijares#4b"
+author: "Jason Lloyd C. Mijares"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+## No. 1
+
+```{r}
+vectorA <- c(1,2,3,4,5)
+matrix5by5 <- matrix(nrow = 5, ncol = 5)
+
+for(i in 1:5){
+  for(j in 1:5){
+    matrix5by5[i,j]<- abs(i-j)
+ }
+}
+
+matrix5by5
+
+```
+## No. 2
+
+```{r}
+x <- 5
+
+for(i in 1:x){
+  for(j in 1:i){
+    cat("*")
+  }
+  cat("\n")
+}
+```
+## No. 3
+
+```{r}
+## start_index <- as.integer(readline(prompt = "Enter the starting index for the Fibonacci sequence: "))
+
+start_index <- 3
+a <- 0
+b <- 1
+sequence <- c()
+
+for (index in 1:1000) {
+  if (index >= start_index) {
+    sequence <- c(sequence, a)
+  }
+  
+  if (a > 500) {
+    break
+  }
+  
+  temp <- a + b
+  a <- b
+  b <- temp
+}
+
+print(sequence)
+
+```
+## No.4
+
+```{r}
+
+## a.
+ShoeSize <- read.csv("ShoeSizeData.csv")
+ShoeSize
+```
+
+```{r}
+head(ShoeSize,6)
+```
+```{r}
+## b.
+
+male_subset <- subset(ShoeSize, Gender == "M")
+male_subset
+```
+```{r}
+female_subset <- subset(ShoeSize, Gender == "F")
+female_subset
+```
+```{r}
+## c.
+
+HouseHold <- read.csv("HouseholdData.csv")
+
+genderCount <-table(HouseHold$Sex)
+
+bplot <- barplot(genderCount, main = "Number of Males and Females", xlab = "Gender", ylab = "Count", col = c("pink","blue"))
+
+legend("topright", legend = names(genderCount), fill = c("pink", "blue"), bty = "n", inset = c(0.05, 0.05))
+```
+## No. 5
+
+```{r}
+
+values <- c(60, 10, 5, 25)
+incomeLabel <- c("Food", "Electricity", "Savings", "Miscellaneous") 
+
+percentages <- round(100 * values / sum(values), 1)
+incomeLabel <- paste(incomeLabel, percentages, "%", sep = " ") 
+
+pie(
+  values,
+  labels = incomeLabel,
+  main = "Monthly Budget",
+  col = rainbow(length(values))
+)
+
+```
+
