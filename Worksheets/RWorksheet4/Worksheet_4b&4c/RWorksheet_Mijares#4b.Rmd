@@ -1,9 +1,4 @@
 ---
-output:
-  pdf_document: default
-  html_document: default
----
- ---
 title: "Rworksheet_Mijares#4b"
 author: "Jason Lloyd C. Mijares"
 date: "`r Sys.Date()`"
@@ -100,7 +95,6 @@ legend("topright", legend = names(genderCount), fill = c("pink", "blue"), bty = 
 ## No. 5
 
 ```{r}
-
 values <- c(60, 10, 5, 25)
 incomeLabel <- c("Food", "Electricity", "Savings", "Miscellaneous") 
 
@@ -115,4 +109,147 @@ pie(
 )
 
 ```
+
+## No. 6
+
+```{r}
+data(iris)
+```
+
+```{r}
+## a. 
+
+str(iris)
+
+
+## Describing the output: It presents the sepal & petal length and width of 3 types of Iris flowers
+```
+```{r}
+
+## b.
+
+irisMean <- colMeans(subset(iris, select = -Species))
+irisMean
+
+
+```
+```{r}
+
+## c.
+
+speciesDistribution <- table(iris$Species)
+
+pie(speciesDistribution, main = "Iris Species Distribution", col = c("purple","lightpink","violet"), labels = names(speciesDistribution))
+    
+legend("topright", legend = names(speciesDistribution), fill = c("purple", "lightpink","violet"))
+```
+```{r}
+
+## d.
+
+Setosa <- subset(iris, Species == "setosa")
+Versicolor <- subset(iris, Species == "versicolor")
+Virginica <- subset(iris, Species == "virginica")
+
+tail(Setosa)
+tail(Versicolor)
+tail(Virginica)
+```
+```{r}
+
+## e.
+
+library(ggplot2)
+
+ggplot(data = iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species, shape = Species))+
+  geom_point(size=2.5) +
+  labs(title = "Iris Dataset", subtitle = "Sepal Width and Length", x = "Sepal Length (cm)", y = "Sepal Width (cm)") + theme_minimal() + scale_color_manual(values = c("setosa" = "purple", "versicolor" = "lightpink", "virginica" = "violet"))
+```
+```{r}
+
+## f.
+
+## The scatter plot presents the relationship of the sepals width and length for the three species of Iris Flower
+## The Setosa species tend to have wide width and an average length among the other species, with one outlier based from the plot.
+## Versicolor has a strong concentration in the average level of the plot, making it have an average sepal width and length.
+## Virginica species has a long length and an average width and also has a strong concentration in the median level of the plot. 
+```
+
+## No. 7
+
+```{r}
+library(readxl)
+
+alexaxlsx <- read_excel("alexa_file.xlsx")
+
+```
+
+```{r}
+## a.
+
+alexaxlsx$variation <- gsub("Black  Dot", "BlackDot", alexaxlsx$variation)
+alexaxlsx$variation <- gsub("Black  Plus", "BlackPlus", alexaxlsx$variation)
+alexaxlsx$variation <- gsub("Black  Show", "BlackShow", alexaxlsx$variation)
+alexaxlsx$variation <- gsub("Black  Spot", "BlackSpot", alexaxlsx$variation)
+
+alexaxlsx$variation <- gsub("White  Dot", "WhiteDot", alexaxlsx$variation)
+alexaxlsx$variation <- gsub("White  Plus", "WhitePlus", alexaxlsx$variation)
+alexaxlsx$variation <- gsub("White  Show", "WhiteShow", alexaxlsx$variation)
+alexaxlsx$variation <- gsub("White  Spot", "WhiteSpot", alexaxlsx$variation)
+
+alexaxlsx$variation[1052:2000]
+```
+```{r}
+knitr::include_graphics("/cloud/project/Worksheets/RWorksheet4/Worksheet_4b&4c/Screenshot 2024-10-31 134154.png")
+```
+
+```{r}
+## b.
+library(dplyr)
+
+noOfVariation <- alexaxlsx %>% count(variation)
+
+save(noOfVariation, file = "variations.RData")
+
+noOfVariation
+```
+```{r}
+## c.
+library("viridis")
+
+par(mar = c(8, 4, 4, 2))
+
+barplot(noOfVariation$n,names.arg = noOfVariation$variation, col = viridis(length(noOfVariation$variation)),
+        main = "Product Variants and Totals", xlab = "Variation", ylab = "Total", las = 2, cex.names = 0.5)
+```
+```{r}
+## d.
+
+library(dplyr)
+
+noOfVariation <- alexaxlsx %>% filter(grepl("Black|White", variation)) %>% count(variation)
+
+blackCount <- noOfVariation %>% filter(grepl("Black", variation))
+whiteCount <- noOfVariation %>% filter(grepl("White", variation))
+
+par(mfrow = c(1, 2))
+
+barplot(blackCount$n, 
+        names.arg = blackCount$variation, 
+        col = rainbow(length(blackCount$n)), 
+        main = "Black Variants", 
+        xlab = "Total Numbers", 
+        ylab = "Variants", las = 2, cex.names = 0.5,
+        ylim = c(0, max(blackCount$n) * 1.2))
+
+barplot(whiteCount$n, 
+        names.arg = whiteCount$variation, 
+        col = rainbow(length(whiteCount$n)), 
+        main = "White Variants", 
+        xlab = "Total Numbers", 
+        ylab = "Variants", las = 2, cex.names = 0.5,
+        ylim = c(0, max(whiteCount$n) * 1.2))
+
+```
+
 
